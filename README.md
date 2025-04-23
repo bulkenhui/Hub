@@ -1,0 +1,58 @@
+-- DEATH_HUB UI Loader
+
+local ScreenGui = Instance.new("ScreenGui", game.CoreGui)
+ScreenGui.Name = "DEATH_HUB_GUI"
+
+local circle = Instance.new("TextButton")
+circle.Name = "ToggleButton"
+circle.Size = UDim2.new(0, 60, 0, 60)
+circle.Position = UDim2.new(1, -70, 0, 10)
+circle.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+circle.Text = "DEATH_HUB"
+circle.TextScaled = true
+circle.TextColor3 = Color3.fromRGB(255, 255, 255)
+circle.Font = Enum.Font.GothamBold
+circle.BorderSizePixel = 0
+circle.Parent = ScreenGui
+Instance.new("UICorner", circle).CornerRadius = UDim.new(1, 0)
+
+local main = Instance.new("Frame")
+main.Size = UDim2.new(0, 250, 0, 300)
+main.Position = UDim2.new(1, -260, 0, 80)
+main.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+main.BackgroundTransparency = 0.3
+main.Visible = false
+main.BorderSizePixel = 0
+main.Parent = ScreenGui
+
+local UIList = Instance.new("UIListLayout", main)
+UIList.Padding = UDim.new(0, 6)
+UIList.HorizontalAlignment = Enum.HorizontalAlignment.Center
+UIList.VerticalAlignment = Enum.VerticalAlignment.Top
+
+local function createButton(text, url)
+	local btn = Instance.new("TextButton")
+	btn.Size = UDim2.new(0, 220, 0, 40)
+	btn.Text = text
+	btn.Font = Enum.Font.GothamBold
+	btn.TextSize = 14
+	btn.BackgroundColor3 = Color3.fromRGB(60, 0, 0)
+	btn.TextColor3 = Color3.fromRGB(255, 255, 255)
+	btn.BorderSizePixel = 0
+	btn.Parent = main
+	Instance.new("UICorner", btn).CornerRadius = UDim.new(0, 8)
+	btn.MouseButton1Click:Connect(function()
+		loadstring(game:HttpGet(url))()
+	end)
+end
+
+createButton("OP No Cooldown", "https://pastebin.com/raw/EGNcHq0U")
+createButton("Alt No Cooldown", "https://pastebin.com/raw/y1N4zv6H")
+createButton("Use Tools", "https://pastebin.com/raw/4nX5Hnma")
+createButton("Alt Use Tools", "https://pastebin.com/raw/MQxKHUtA")
+createButton("Get Tools", "https://pastebin.com/raw/kKePZFsk")
+createButton("Instant Respawn", "https://pastebin.com/raw/wjYqfD5v")
+
+circle.MouseButton1Click:Connect(function()
+	main.Visible = not main.Visible
+end)
